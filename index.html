@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VirtuBoard</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <div class="toolbar">
+            <div class="tool-group">
+                <button id="pen-tool" class="tool active" title="Pen">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+                    </svg>
+                </button>
+                <button id="eraser-tool" class="tool" title="Eraser">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
+                        <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
+                    </svg>
+                </button>
+                <button id="highlighter-tool" class="tool" title="Highlighter">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11l-6 6v3h9l3-3"></path>
+                        <path d="M22 12l-4.37-4.37a2.12 2.12 0 0 0-3 0l-1.32 1.32 7.37 7.37 1.32-1.32a2.12 2.12 0 0 0 0-3z"></path>
+                    </svg>
+                </button>
+                <button id="pointer-tool" class="tool" title="Pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 19 22 12 13 5 13 19"></polygon>
+                        <polygon points="2 12 11 19 11 5 2 12"></polygon>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="color-picker">
+                <input type="color" id="color-picker" value="#000000">
+                <span>Color</span>
+            </div>
+            
+            <div class="thickness-control">
+                <input type="range" id="thickness-slider" min="1" max="20" value="3">
+                <span>Thickness</span>
+            </div>
+
+            <div class="brush-style-selector">
+                <label for="brush-style">Brush</label>
+                <select id="brush-style">
+                    <option value="normal">Normal</option>
+                    <option value="rainbow">Rainbow</option>
+                    <option value="dotted">Dotted</option>
+                </select>
+            </div>
+            
+
+            <div class="background-selector">
+                <label for="background-select">Background</label>
+                <select id="background-select">
+                    <option value="blank">Blank</option>
+                    <option value="grid">Grid</option>
+                    <option value="lined">Lined</option>
+                    <option value="dots">Dotted</option>
+                </select>
+            </div>
+            
+            
+            <div class="action-buttons">
+                <!-- <button id="sticky-btn" title="Add Sticky Note">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3h18v18H3z"></path>
+                        <path d="M15 3v6h6"></path>
+                    </svg>
+                </button> -->
+
+                <button id="sticky-btn" title="Add Sticky Note">
+                    <img src="stickynotes.png" alt="Sticky Notes" width="24" height="24">
+                  </button>
+                  
+                
+
+
+                <button id="undo-btn" title="Undo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 10h10c4 0 7 3 7 7v0c0 4-3 7-7 7H3"></path>
+                        <polyline points="3 10 9 4 3 10 9 16"></polyline>
+                    </svg>
+                </button>
+                <button id="redo-btn" title="Redo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10H11c-4 0-7 3-7 7v0c0 4 3 7 7 7h18"></path>
+                        <polyline points="21 10 15 4 21 10 15 16"></polyline>
+                    </svg>
+                </button>
+                <button id="save-btn" title="Save as Image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                </button>
+                <label for="import-file" id="import-label" title="Import Files">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <input type="file" id="import-file" accept=".pdf,.jpg,.jpeg,.png" hidden>
+                </label>
+                <button id="camera-btn" title="Toggle Camera">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                </button>
+
+                <button id="clear-btn" title="Clear Board">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 6h18M9 6v12m6-12v12M4 6l1 14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2l1-14" />
+                    </svg>
+                </button>
+                
+            </div>
+        </div>
+        
+        <div class="canvas-container">
+            <canvas id="whiteboard"></canvas>
+            <div id="camera-container" class="hidden">
+                <video id="camera-feed" autoplay playsinline></video>
+            </div>
+            <div id="image-preview" class="hidden">
+                <img id="imported-image" src="" alt="Imported Image">
+                <button id="place-image-btn">Place Image</button>
+                <button id="cancel-image-btn">Cancel</button>
+            </div>
+        </div>
+
+        <div id="tool-settings">
+            <!-- move color picker, thickness, brush style here -->
+        </div>
+        
+    </div>
+
+    <div id="page-controls">
+        <button id="prev-page-btn" title="Previous Page">⟨</button>
+        <span id="page-label">Page 1</span>
+        <button id="next-page-btn" title="Next Page">⟩</button>
+    </div>
+    
+    
+    <div id="notification" class="notification hidden">
+        
+        </div>
+        
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script src="script.js"></script>
+
+    <div id="sticky-container"></div>
+
+
+</body>
+</html>
